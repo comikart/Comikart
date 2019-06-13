@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightgray;
+  padding-top: 1.5rem;
+  &__image_container {
+    padding: 0.2rem 0.4rem;
+  }
+  &__logo {
+    height: 4rem;
+    display: inline-block;
+    pointer-events: none;
+  }
+  &__button_containerRight {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    a:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
