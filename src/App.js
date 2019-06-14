@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router } from 'buttermilk';
 import Nav from './components/Nav';
 import RegisterModal from './components/RegisterModal';
+import LoginModal from './components/LoginModal';
 import css from './app.module.scss';
 import { connect } from 'react-redux';
 
@@ -100,6 +101,9 @@ class Base extends Component {
         {this.state.registerModal ? (
           <RegisterModal toggle={this.handleModalToggle} />
         ) : null}
+        {this.state.signInModal ? (
+          <LoginModal toggle={this.handleModalToggle} />
+        ) : null}
         {this.props.children}
       </div>
     );
@@ -114,4 +118,7 @@ const stateToProps = state => {
   return { ...state };
 };
 
-export default connect(stateToProps)(App);
+export default connect(
+  stateToProps,
+  {},
+)(App);

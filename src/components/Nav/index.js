@@ -50,7 +50,8 @@ class Nav extends Component {
         >
           <img src={cart} alt='a cart icon for the cart button' />
           Cart
-          {this.props.user.cart.length > 0 ? (
+          {this.props.user.cart !== undefined &&
+          this.props.user.cart.length > 0 ? (
             <div className={btnStyles.btn__notification_bubble}>
               {this.props.user.cart.length}
             </div>
