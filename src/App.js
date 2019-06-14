@@ -90,7 +90,7 @@ class Base extends Component {
     };
   }
   handleModalToggle = modalName => {
-    const modal =
+    const otherModal =
       modalName === 'registerModal' ? 'signInModal' : 'registerModal';
     this.setState({ [modalName]: !this.state[modalName], [modal]: false });
   };
