@@ -1,0 +1,30 @@
+.Hamburger {
+  width: 4rem;
+  height: 4rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 3px;
+  cursor: pointer;
+  &__Line {
+    width: 100%;
+    height: 0.6rem;
+    background-color: #555;
+    border-radius: 3rem;
+  }
+}
+
+.HamburgerActive {
+  background: #dedede;
+  .Hamburger__Line {
+    transform-origin: 50% 50%;
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+  .Hamburger__Line:nth-child(even) {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  .Hamburger__Line:last-child {
+    opacity: 0;
+  }
+}

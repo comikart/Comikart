@@ -2,9 +2,14 @@ import * as userActions from '../actions/userActions';
 
 const init = {
   products: [],
+  categories: [],
+  publishers: [],
+  authors: [],
   user: {
     first_name: 'john',
     last_name: 'doe',
+    cart: [{ id: '1', title: 'comic book' }],
+    role: { id: '2', description: 'client' },
   },
   fetchingUser: false,
   addingUser: false,
