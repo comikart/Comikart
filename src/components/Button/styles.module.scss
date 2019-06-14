@@ -18,13 +18,13 @@
   }
   &__notification_bubble {
     position: absolute;
-    top: -1.4rem;
-    right: -1.4rem;
+    top: -1rem;
+    right: -1rem;
     padding: 0 0.8rem;
     border-radius: 100%;
     background-color: red;
     z-index: 1;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   img {
     height: 2rem;
