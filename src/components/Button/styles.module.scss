@@ -1,0 +1,46 @@
+.btn {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 1.6rem;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #555;
+  background-color: #efefef;
+  border: 0;
+  letter-spacing: 1px;
+  cursor: pointer;
+  &:hover {
+    background: #e7e7e7;
+  }
+  &__notification_bubble {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    padding: 0 0.8rem;
+    border-radius: 100%;
+    background-color: #ee5454;
+    color: #eee;
+    z-index: 1;
+    font-size: 1.4rem;
+  }
+  img {
+    height: 2rem;
+    margin-right: 0.5rem;
+    pointer-events: none;
+  }
+}
+
+.btnPrimary {
+  background-color: #ffc510;
+  color: white;
+  font-weight: 900;
+  font-size: 1.7rem;
+  padding: 0.8rem 1.5rem;
+  &:hover {
+    background-color: #ffce36;
+  }
+}

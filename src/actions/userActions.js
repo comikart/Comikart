@@ -22,8 +22,10 @@ export const login = userDetails => {
   };
 };
 
-export const register = () => {
-  const promise = axios.post(`${API_URL}${USER_BASEPATH}/register`);
+export const register = form => {
+  const promise = axios.post(`${API_URL}${USER_BASEPATH}/register`, {
+    user: form,
+  });
   return dispatch => {
     dispatch({ type: CREATINGUSER });
     promise

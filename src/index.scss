@@ -19,6 +19,11 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color: #777;
-  padding: 3rem;
   box-sizing: border-box;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: #4c94f6;
 }

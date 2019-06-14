@@ -2,10 +2,10 @@ import * as userActions from '../actions/userActions';
 
 const init = {
   products: [],
-  user: {
-    first_name: 'john',
-    last_name: 'doe',
-  },
+  categories: [],
+  publishers: [],
+  authors: [],
+  user: null,
   fetchingUser: false,
   addingUser: false,
   updatingUser: false,
