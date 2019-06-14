@@ -5,7 +5,8 @@ import css from './styles.module.scss';
 import btnStyles from '../Button/styles.module.scss';
 import logo from '../../static/images/logo.png';
 import settings from '../../static/icons/settings.png';
-import cart from '../../static/icons/shopping-cart.png';
+import cart from '../../static/icons/cart-white.png';
+import search from '../../static/icons/search.png';
 import Button from '../Button';
 import Hamburger from '../Hamburger';
 
@@ -14,29 +15,41 @@ class Nav extends Component {
     super(props);
     this.state = {
       activeHamburger: false,
+      search: '',
     };
   }
 
   handleHamburger = () => {
     this.setState({ activeHamburger: !this.state.activeHamburger });
   };
+  handleInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   render() {
     const buttons = !this.props.user ? (
-      <div className={css.nav__button_containerRight}>
+      <React.Fragment>
         <Button style='primary'>Log in</Button>
         <Button>Sign Up</Button>
-      </div>
+      </React.Fragment>
     ) : (
-      <div className={css.nav__button_containerRight}>
+      <React.Fragment>
         <Link className={`${btnStyles.btn}`} href='/account'>
           <img src={settings} alt='a cog wheel icon for the settings button' />
           Account
         </Link>
-        <Link className={`${btnStyles.btn}`} href='/cart'>
+        <Link
+          className={`${btnStyles.btn} ${btnStyles.btnPrimary}`}
+          href='/cart'
+        >
           <img src={cart} alt='a cart icon for the cart button' />
           Cart
+          {this.props.user.cart.length > 0 ? (
+            <div className={btnStyles.btn__notification_bubble}>
+              {this.props.user.cart.length}
+            </div>
+          ) : null}
         </Link>
-      </div>
+      </React.Fragment>
     );
 
     return (
@@ -44,11 +57,26 @@ class Nav extends Component {
         <Link href='/' className={css.nav__image_container}>
           <img src={logo} alt='logo' className={css.nav__logo} />
         </Link>
-        <Hamburger
-          isActive={this.state.activeHamburger}
-          handleHamburger={this.handleHamburger}
-        />
-        {buttons}
+        <div className={css.nav__button_containerMiddle}>
+          <input
+            name='search'
+            onChange={this.handleInput}
+            className={css.nav__search_bar}
+          />
+          <Link
+            className={css.nav__icon_container}
+            href={`/products?title=${this.state.search}`}
+          >
+            <img src={search} alt='search bar icon' />
+          </Link>
+        </div>
+        <div className={css.nav__button_containerRight}>
+          <Hamburger
+            isActive={this.state.activeHamburger}
+            handleHamburger={this.handleHamburger}
+          />
+          {buttons}
+        </div>
       </nav>
     );
   }
