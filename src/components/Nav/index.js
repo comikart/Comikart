@@ -28,8 +28,15 @@ class Nav extends Component {
   render() {
     const buttons = !this.props.user ? (
       <React.Fragment>
-        <Button style='primary'>Log in</Button>
-        <Button>Sign Up</Button>
+        <Button
+          onClick={() => this.props.toggle('signInModal')}
+          style='primary'
+        >
+          Log in
+        </Button>
+        <Button onClick={() => this.props.toggle('registerModal')}>
+          Sign Up
+        </Button>
       </React.Fragment>
     ) : (
       <React.Fragment>
@@ -43,7 +50,8 @@ class Nav extends Component {
         >
           <img src={cart} alt='a cart icon for the cart button' />
           Cart
-          {this.props.user.cart.length > 0 ? (
+          {this.props.user.cart !== undefined &&
+          this.props.user.cart.length > 0 ? (
             <div className={btnStyles.btn__notification_bubble}>
               {this.props.user.cart.length}
             </div>

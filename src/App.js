@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Router } from 'buttermilk';
 import Nav from './components/Nav';
+import RegisterModal from './components/RegisterModal';
+import LoginModal from './components/LoginModal';
 import css from './app.module.scss';
+import { connect } from 'react-redux';
 
 const routes = [
   {
@@ -78,15 +81,44 @@ const routes = [
   },
 ];
 
-const Base = props => (
-  <div className={css.App}>
-    <Nav {...props} />
-    {props.children}
-  </div>
-);
+class Base extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      registerModal: false,
+      signInModal: false,
+    };
+  }
+  handleModalToggle = modalName => {
+    const otherModal =
+      modalName === 'registerModal' ? 'signInModal' : 'registerModal';
+    this.setState((prevState) => { [modalName]: !prevState[modalName], [otherModal]: false });
+  };
+  render() {
+    return (
+      <div className={css.App}>
+        <Nav toggle={this.handleModalToggle} />
+        {this.state.registerModal ? (
+          <RegisterModal toggle={this.handleModalToggle} />
+        ) : null}
+        {this.state.signInModal ? (
+          <LoginModal toggle={this.handleModalToggle} />
+        ) : null}
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 function App() {
   return <Router routes={routes} outerComponent={Base} />;
 }
 
-export default App;
+const stateToProps = state => {
+  return { ...state };
+};
+
+export default connect(
+  stateToProps,
+  {},
+)(App);

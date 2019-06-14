@@ -5,12 +5,7 @@ const init = {
   categories: [],
   publishers: [],
   authors: [],
-  user: {
-    first_name: 'john',
-    last_name: 'doe',
-    cart: [{ id: '1', title: 'comic book' }],
-    role: { id: '2', description: 'client' },
-  },
+  user: null,
   fetchingUser: false,
   addingUser: false,
   updatingUser: false,
