@@ -15,7 +15,7 @@ class LoginModal extends Component {
     };
   }
   handleToggle = e => {
-    this.setState({ [e.target.name]: !this.state[e.target.name] });
+    this.setState((prevState) => ({ [e.target.name]: !prevState[e.target.name]}));
   };
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
