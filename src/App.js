@@ -92,7 +92,7 @@ class Base extends Component {
   handleModalToggle = modalName => {
     const otherModal =
       modalName === 'registerModal' ? 'signInModal' : 'registerModal';
-    this.setState((prevState) => { [modalName]: !prevState[modalName], [otherModal]: false });
+      this.setState((prevState) => ({ [modalName]: !prevState[modalName], [otherModal]: false}));
   };
   render() {
     return (
