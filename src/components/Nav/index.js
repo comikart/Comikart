@@ -28,8 +28,15 @@ class Nav extends Component {
   render() {
     const buttons = !this.props.user ? (
       <React.Fragment>
-        <Button style='primary'>Log in</Button>
-        <Button>Sign Up</Button>
+        <Button
+          onClick={() => this.props.toggle('signInModal')}
+          style='primary'
+        >
+          Log in
+        </Button>
+        <Button onClick={() => this.props.toggle('registerModal')}>
+          Sign Up
+        </Button>
       </React.Fragment>
     ) : (
       <React.Fragment>

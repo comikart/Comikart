@@ -9,7 +9,7 @@ class Button extends Component {
   render() {
     const style = this.props.style === 'primary' ? css.btnPrimary : '';
     return (
-      <button onClick={this.props.callback} className={`${css.btn} ${style}`}>
+      <button onClick={this.props.onClick} className={`${css.btn} ${style}`}>
         {this.props.children}
       </button>
     );
