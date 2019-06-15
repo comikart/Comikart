@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import css from './styles.module.scss';
+import CartItem from '../../components/CartItem';
 
 class Cart extends Component {
   constructor(props) {
@@ -18,7 +19,11 @@ class Cart extends Component {
             {length > 1 ? 'items' : 'item'} in your cart.
           </p>
         </header>
-        <section className={css.cart_container} />
+        <section className={css.cart__container}>
+          {this.props.user.cart.map((item, i) => (
+            <CartItem {...item} key={item.product.title + i} />
+          ))}
+        </section>
       </Fragment>
     );
   }
