@@ -16,7 +16,8 @@
 }
 
 .HamburgerActive {
-  background: #dedede;
+  border: 2px solid #dedede;
+  border-radius: 5px;
   .Hamburger__Line {
     transform-origin: 50% 50%;
     transform: rotate(45deg) translate(8px, 8px);

@@ -5,7 +5,22 @@ const init = {
   categories: [],
   publishers: [],
   authors: [],
-  user: null,
+  user: {
+    first_name: 'john',
+    last_name: 'doe',
+    id: '1',
+    email: 'john@email.com',
+    role_id: 2,
+    cart: [
+      {
+        user_id: 1,
+        product_id: 1,
+        quantity: 1,
+        product: { id: 1, title: 'hello, world', unit_price: 19.99 },
+      },
+    ],
+    paymentOptions: [],
+  },
   fetchingUser: false,
   addingUser: false,
   updatingUser: false,

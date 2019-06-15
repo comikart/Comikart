@@ -11,6 +11,12 @@
     display: inline-block;
     pointer-events: none;
   }
+  &__button_containerLeft {
+    margin-right: auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+  }
   &__button_containerMiddle {
     width: 51.33%;
     margin: 0 auto;

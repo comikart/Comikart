@@ -65,6 +65,12 @@ class Nav extends Component {
         <Link href='/' className={css.nav__image_container}>
           <img src={logo} alt='logo' className={css.nav__logo} />
         </Link>
+        <div className={css.nav__button_containerLeft}>
+          <Hamburger
+            isActive={this.state.activeHamburger}
+            handleHamburger={this.handleHamburger}
+          />
+        </div>
         <div className={css.nav__button_containerMiddle}>
           <input
             name='search'
@@ -78,13 +84,7 @@ class Nav extends Component {
             <img src={search} alt='search bar icon' />
           </Link>
         </div>
-        <div className={css.nav__button_containerRight}>
-          <Hamburger
-            isActive={this.state.activeHamburger}
-            handleHamburger={this.handleHamburger}
-          />
-          {buttons}
-        </div>
+        <div className={css.nav__button_containerRight}>{buttons}</div>
       </nav>
     );
   }
