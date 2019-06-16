@@ -20,7 +20,7 @@
     position: absolute;
     top: -1rem;
     right: -1rem;
-    padding: 0 0.8rem;
+    padding: 0.1rem 0.5rem;
     border-radius: 100%;
     background-color: #ee5454;
     color: #eee;
@@ -43,4 +43,12 @@
   &:hover {
     background-color: #ffce36;
   }
+}
+
+.btnLarge {
+  width: 35rem;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  font-size: 2.4rem;
 }

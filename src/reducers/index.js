@@ -18,7 +18,7 @@ const init = {
         quantity: 1,
         product: {
           id: 1,
-          title: 'Batman',
+          title: 'Batman: The killing joke, Deluxe Edition',
           unit_price: 19.99,
           publisher: 'DC Comics',
           author: 'Scott Snyder',
@@ -32,7 +32,7 @@ const init = {
         product: {
           id: 1,
           title: 'Batman',
-          unit_price: 19.99,
+          unit_price: 4.99,
           publisher: 'DC Comics',
           author: 'Scott Snyder',
           issue: '6',
@@ -44,8 +44,8 @@ const init = {
         quantity: 1,
         product: {
           id: 1,
-          title: 'Batman',
-          unit_price: 19.99,
+          title: 'Superman',
+          unit_price: 9.99,
           publisher: 'DC Comics',
           author: 'Scott Snyder',
           issue: '6',

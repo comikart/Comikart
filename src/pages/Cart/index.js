@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import css from './styles.module.scss';
 import CartItem from '../../components/CartItem';
+import btnStyles from '../../components/Button/styles.module.scss';
+import { Link } from 'buttermilk';
 
 class Cart extends Component {
   constructor(props) {
@@ -10,8 +12,12 @@ class Cart extends Component {
   }
   render() {
     const length = this.props.user.cart.length;
+    const subTotal = this.props.user.cart.reduce(
+      (accu, curr) => curr.quantity * curr.product.unit_price,
+      0,
+    );
     return (
-      <Fragment>
+      <div className={css.container}>
         <header className={css.header}>
           <h1 className={css.header__title}>Your Cart</h1>
           <p className={css.header__text}>
@@ -23,8 +29,26 @@ class Cart extends Component {
           {this.props.user.cart.map((item, i) => (
             <CartItem {...item} key={item.product.title + i} />
           ))}
+          <div className={css.orderDetails}>
+            <header className={css.orderDetails__header}>
+              <h1 className={css.header__text}>
+                <span className={css.textLeft}>Subtotal ({length} items):</span>
+                <span className={css.textRight}>&nbsp;$ {subTotal}</span>
+              </h1>
+            </header>
+            <div className={css.orderDetails__box}>
+              <Link
+                href='/cart/purchase'
+                className={`${btnStyles.btn} ${btnStyles.btnPrimary} ${
+                  btnStyles.btnLarge
+                }`}
+              >
+                Checkout
+              </Link>
+            </div>
+          </div>
         </section>
-      </Fragment>
+      </div>
     );
   }
 }
