@@ -53,3 +53,14 @@
   color: #80b5ff;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 480px) {
+  .orderDetails {
+    padding: 0 2rem;
+    &__box {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

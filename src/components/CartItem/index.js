@@ -61,7 +61,7 @@ class CartItem extends Component {
           </p>
         </div>
         <div className={css.container__section}>
-          <h2 className={css.center}>Quantity</h2>
+          <h2 className={`${css.container__text} ${css.center}`}>Quantity</h2>
           <div className={css.quantity}>
             <div
               className={css.quantity__box}
