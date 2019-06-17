@@ -13,7 +13,7 @@ class Cart extends Component {
   render() {
     const length = this.props.user.cart.length;
     const subTotal = this.props.user.cart.reduce(
-      (accu, curr) => curr.quantity * curr.product.unit_price,
+      (accu, curr) => accu + curr.quantity * curr.product.unit_price,
       0,
     );
     return (
