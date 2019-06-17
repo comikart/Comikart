@@ -3,7 +3,7 @@ import * as userActions from '../actions/userActions';
 const init = {
   products: [],
   categories: [],
-  publishers: [],
+  publishers: ['DC Comics', 'Marvel'],
   authors: [],
   user: {
     first_name: 'john',

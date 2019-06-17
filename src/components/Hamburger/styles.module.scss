@@ -18,14 +18,61 @@
 .HamburgerActive {
   border: 2px solid #dedede;
   border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .Hamburger__Line:nth-child(3) {
+    display: none;
+  }
   .Hamburger__Line {
     transform-origin: 50% 50%;
-    transform: rotate(45deg) translate(8px, 8px);
+    transform: rotate(45deg) translate(2px, 2px);
   }
   .Hamburger__Line:nth-child(even) {
-    transform: rotate(-45deg) translate(0, 0);
+    transform: rotate(-45deg) translate(2px, -2px);
   }
-  .Hamburger__Line:last-child {
-    opacity: 0;
+  .DropDown {
+    display: flex;
+  }
+}
+
+.DropDown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 20rem;
+  display: none;
+  background: white;
+  border: 1px solid #eee;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  &__Account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__Header {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  &__Header:not(:first-child) {
+    margin-top: 2rem;
+  }
+  &__Link {
+    font-size: 1.6rem;
+    &:hover {
+      color: #92befa;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .DropDown {
+    left: -16rem;
+    width: 100%;
   }
 }
