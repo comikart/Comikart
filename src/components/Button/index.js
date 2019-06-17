@@ -8,8 +8,12 @@ class Button extends Component {
   }
   render() {
     const style = this.props.style === 'primary' ? css.btnPrimary : '';
+    const size = this.props.size === 'large' ? css.btnLarge : '';
     return (
-      <button onClick={this.props.onClick} className={`${css.btn} ${style}`}>
+      <button
+        onClick={this.props.onClick}
+        className={`${css.btn} ${style} ${size}`}
+      >
         {this.props.children}
       </button>
     );

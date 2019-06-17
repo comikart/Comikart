@@ -22,7 +22,9 @@ class RegisterModal extends Component {
     };
   }
   handleToggle = e => {
-    this.setState((prevState) => ({ [e.target.name]: !prevState[e.target.name] }));
+    this.setState(prevState => ({
+      [e.target.name]: !prevState[e.target.name],
+    }));
   };
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -77,7 +79,7 @@ class RegisterModal extends Component {
     const lower = temp === null ? '' : temp;
     temp = value.match(/[0-9]/g);
     const nums = temp === null ? '' : temp;
-    temp = value.match(/[!@#$%^&*()\.\,><]/g);
+    temp = value.match(/[!@#$%^&*().,><]/g);
     const special = temp === null ? '' : temp;
     if (length >= 12) {
       sum += 25;

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Router } from 'buttermilk';
+import { connect } from 'react-redux';
+
 import Nav from './components/Nav';
 import RegisterModal from './components/RegisterModal';
 import LoginModal from './components/LoginModal';
+
 import css from './app.module.scss';
-import { connect } from 'react-redux';
 
 const routes = [
   {
@@ -57,7 +59,7 @@ const routes = [
   },
   {
     path: '/cart',
-    render: () => <h1>Cart Page</h1>,
+    render: () => React.lazy(() => import('./pages/Cart')),
   },
   {
     path: '/cart/purchase',
@@ -92,7 +94,10 @@ class Base extends Component {
   handleModalToggle = modalName => {
     const otherModal =
       modalName === 'registerModal' ? 'signInModal' : 'registerModal';
-      this.setState((prevState) => ({ [modalName]: !prevState[modalName], [otherModal]: false}));
+    this.setState(prevState => ({
+      [modalName]: !prevState[modalName],
+      [otherModal]: false,
+    }));
   };
   render() {
     return (

@@ -1,0 +1,143 @@
+.container {
+  padding: 2rem;
+  min-height: 18rem;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25%;
+  }
+  &__headerText {
+    font-size: 2rem;
+    color: #444;
+    line-height: 1;
+    margin-bottom: 2rem;
+    a {
+      color: #3c75a1;
+    }
+    a:hover {
+      color: #649dc9;
+    }
+  }
+  &__text {
+    font-size: 1.6rem;
+  }
+  &__productImage {
+    height: 16rem;
+    margin: 0 auto;
+  }
+}
+
+.quantity {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin: 1rem auto 0;
+  width: 14rem;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  &__box {
+    width: 33%;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__box:nth-child(2) {
+    pointer-events: none;
+  }
+  &__box:nth-child(odd) {
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  &__box:nth-child(odd):hover {
+    background: #eee;
+  }
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.link {
+  color: #80b5ff;
+  cursor: pointer;
+  &:hover {
+    color: #4c94f6;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    &__headerText {
+      font-size: 1.6rem;
+    }
+    &__text {
+      font-size: 1.4rem;
+    }
+    &__productImage {
+      height: 10rem;
+    }
+  }
+  .quantity {
+    width: 100%;
+    height: 4rem;
+    margin: 1rem 0 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    padding: 0;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid gray;
+    overflow: hidden;
+    &__section:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+    &__section:not(:first-child) {
+      background: #2f2f2faa;
+      width: 100%;
+      padding: 1rem;
+      z-index: 0;
+    }
+    &__headerText {
+      font-size: 2rem;
+      a {
+        color: #4c94f6;
+        &:hover {
+          color: #7eb1f8;
+        }
+      }
+    }
+    &__text {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+    &__productImage {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .quantity {
+    background: #fff;
+    width: 40%;
+    margin: 1rem auto 0;
+  }
+}
