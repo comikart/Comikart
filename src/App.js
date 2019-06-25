@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Nav from './components/Nav';
 import RegisterModal from './components/RegisterModal';
 import LoginModal from './components/LoginModal';
+import Carousel from './components/Caroulsel/Carousel';
 
 import css from './app.module.scss';
 
@@ -109,6 +110,9 @@ class Base extends Component {
         {this.state.signInModal ? (
           <LoginModal toggle={this.handleModalToggle} />
         ) : null}
+
+        <Carousel />
+
         {this.props.children}
       </div>
     );
