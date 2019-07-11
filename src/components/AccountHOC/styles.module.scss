@@ -1,0 +1,25 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  &__SideMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-right: 2rem;
+    border-right: 1px solid lightgray;
+    min-height: 60rem;
+    * {
+      margin-bottom: 1rem;
+    }
+  }
+  &__Link {
+    font-size: 1.6rem;
+  }
+  &__Title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  &__Content {
+    padding: 1rem;
+  }
+}

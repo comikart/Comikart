@@ -43,7 +43,7 @@ const routes = [
   },
   {
     path: '/account',
-    render: () => <h1>Account Details Page.</h1>,
+    render: () => React.lazy(() => import('./pages/Account')),
   },
   {
     path: '/account/purchase-history',
