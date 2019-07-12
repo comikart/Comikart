@@ -47,7 +47,7 @@ const routes = [
   },
   {
     path: '/account/purchase-history',
-    render: () => <h1>Purchase History Records</h1>,
+    render: () => React.lazy(() => import('./pages/PurchaseHistory')),
   },
   {
     path: '/account/purchase-history/:id',
