@@ -12,6 +12,8 @@ $notificationContainer-color: #ee5454;
 }
 html {
   font-size: 62.5%;
+  min-height: 100vh;
+  height: 100%;
 }
 
 body {
@@ -21,6 +23,10 @@ body {
   color: #777;
   box-sizing: border-box;
   position: relative;
+  height: 100%;
+}
+#root {
+  height: 100%;
 }
 
 a {
