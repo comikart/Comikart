@@ -14,11 +14,14 @@ class AccountHOC extends Component {
             Settings
           </Link>
           <h2 className={css.Container__Title}>Orders</h2>
-          <Link href='/purchase-history' className={css.Container__Link}>
+          <Link
+            href='/account/purchase-history'
+            className={css.Container__Link}
+          >
             Order History
           </Link>
           <h2 className={css.Container__Title}>Manage Account</h2>
-          <Link href='/payment-methods' className={css.Container__Link}>
+          <Link href='/account/payment-methods' className={css.Container__Link}>
             Payment Methods
           </Link>
         </div>

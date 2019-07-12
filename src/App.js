@@ -55,7 +55,7 @@ const routes = [
   },
   {
     path: '/account/payment-methods',
-    render: () => <h1>Payment Methods</h1>,
+    render: () => React.lazy(() => import('./pages/PaymentMethods')),
   },
   {
     path: '/cart',
