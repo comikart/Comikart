@@ -1,7 +1,32 @@
 import * as userActions from '../actions/userActions';
 
 const init = {
-  products: [],
+  products: [
+    {
+      id: 1,
+      title: 'Batman: The killing joke, Deluxe Edition',
+      unit_price: 19.99,
+      publisher: 'DC Comics',
+      author: 'Scott Snyder',
+      issue: '6',
+    },
+    {
+      id: 2,
+      title: 'Batman',
+      unit_price: 4.99,
+      publisher: 'DC Comics',
+      author: 'Scott Snyder',
+      issue: '6',
+    },
+    {
+      id: 3,
+      title: 'Superman',
+      unit_price: 9.99,
+      publisher: 'DC Comics',
+      author: 'Scott Snyder',
+      issue: '6',
+    },
+  ],
   categories: [],
   publishers: ['DC Comics', 'Marvel'],
   authors: [],
