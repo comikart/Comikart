@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import css from './styles.module.scss';
 import ProductCard from '../../components/ProductCard';
 
 class Products extends Component {
   render() {
     return (
-      <div>
+      <div className={css.container}>
         {this.props.products.map(product => {
           return (
             <React.Fragment>
