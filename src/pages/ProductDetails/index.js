@@ -34,16 +34,18 @@ const ProductDetails = props => {
 
   return (
     <div style={{ width: '100%', marginLeft: '30%' }}>
-      <img src={defaultProductImage} alt="Default Comic Picture" />
+      <img src={defaultProductImage} alt="Default Comic" />
       <h1>Title: {title}</h1>
       <p>Description: {description}</p>
-      <h3>Author: {author}</h3>
       <h3>Series: {series}</h3>
+      <h3>Author: {author}</h3>
+      <h3>Publisher: {publisher}</h3>
       <h3>Issue: {issue}</h3>
       <h3>Paperback: {paperback}</h3>
       <h3>isbn: {isbn}</h3>
-      <h3>weight: {weight}</h3>
-      <h3>dimensions: {dimensions}</h3>
+      <h3>Weight: {weight}</h3>
+      <h3>Dimensions: {dimensions}</h3>
+      {is_discontinued ? <h3>Sold Out</h3> : <h3>Unit Price: {unit_price}</h3>}
     </div>
   );
 };
