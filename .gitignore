@@ -7,7 +7,7 @@
 
 #locks
 package-lock.json
-yarn-lock.json
+yarn.lock
 
 # testing
 /coverage
