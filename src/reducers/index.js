@@ -35,7 +35,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 1,
+      id: 5,
       title: 'Batman: The killing joke, Deluxe Edition',
       unit_price: 19.99,
       publisher: 'DC Comics',
@@ -43,7 +43,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 2,
+      id: 6,
       title: 'Batman',
       unit_price: 4.99,
       publisher: 'DC Comics',
@@ -51,7 +51,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 3,
+      id: 7,
       title: 'Superman',
       unit_price: 9.99,
       publisher: 'DC Comics',
@@ -59,7 +59,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 4,
+      id: 8,
       title: 'Aquaman',
       unit_price: 9.99,
       publisher: 'DC Comics',
@@ -67,7 +67,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 1,
+      id: 9,
       title: 'Batman: The killing joke, Deluxe Edition',
       unit_price: 19.99,
       publisher: 'DC Comics',
@@ -75,7 +75,7 @@ const init = {
       issue: '6',
     },
     {
-      id: 2,
+      id: 10,
       title: 'Batman',
       unit_price: 4.99,
       publisher: 'DC Comics',
@@ -83,20 +83,20 @@ const init = {
       issue: '6',
     },
     {
-      id: 3,
+      id: 11,
       title: 'Superman',
       unit_price: 9.99,
       publisher: 'DC Comics',
       author: 'Scott Snyder',
-      issue: '6',
+      issue: '11',
     },
     {
-      id: 4,
+      id: 12,
       title: 'Aquaman',
       unit_price: 9.99,
       publisher: 'DC Comics',
       author: 'Scott Snyder',
-      issue: '6',
+      issue: '12',
     },
   ],
   categories: [],
