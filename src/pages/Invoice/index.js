@@ -19,9 +19,9 @@ class Invoice extends Component {
   };
 
   purchase = () => {
-    /* API call to compile 
+    /* API call to save invoice + compile the following for the POST
         - the shipping address 
-            * (street + city + zip_code OR
+            * String concatenate (street + city + zip_code) OR
             * this.props.user.selectedBillingOption's address)
         - subtotal
         - total
