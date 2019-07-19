@@ -50,7 +50,7 @@ const routes = [
   },
   {
     path: '/cart/purchase',
-    render: () => <h1>Invoice Details for Current Cart</h1>,
+    render: () => React.lazy(() => import('./pages/Invoice')),
   },
   {
     path: '/wish-list',
