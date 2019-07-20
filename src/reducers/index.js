@@ -11,6 +11,7 @@ const init = {
     id: '1',
     email: 'john@email.com',
     role_id: 2,
+    purchaseHistory: [],
     cart: [
       {
         user_id: 1,
@@ -91,6 +92,7 @@ const init = {
   addingUser: false,
   updatingUser: false,
   deletingUser: false,
+  fetchingPurchaseHistory: false,
   error: null,
 };
 
@@ -102,6 +104,16 @@ const userReducer = (state = init, action) => {
       return Object.assign({}, state, {
         user: action.payload,
         fetchingUser: false,
+      });
+
+    case userActions.FETCHINGPURCHASEHISTORY:
+      return Object.assign({}, state, { fetchingPurchaseHistory: true });
+    case userActions.FETCHEDPURCHASEHISTORY:
+      return Object.assign({}, state, {
+        user: {
+          ...state.user,
+          purchaseHistory: { ...state.user.purchaseHistory, ...action.payload },
+        },
       });
     case userActions.ERROR:
       return Object.assign({}, state, { error: action.payload });
