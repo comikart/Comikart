@@ -32,7 +32,7 @@ npm install
 
 ### License & copyright
 
-Distributed under the MIT License. See [Lisence](https://opensource.org/licenses/MIT) for more information.
+Distributed under the MIT License. See [License](https://opensource.org/licenses/MIT) for more information.
 
 ---
 

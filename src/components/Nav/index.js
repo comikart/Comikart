@@ -76,12 +76,12 @@ class Nav extends Component {
             onChange={this.handleInput}
             className={css.nav__search_bar}
           />
-          <Link
+          <a
             className={css.nav__icon_container}
             href={`/products?title=${this.state.search}`}
           >
             <img src={search} alt='search bar icon' />
-          </Link>
+          </a>
         </div>
         <div className={css.nav__button_containerRight}>{buttons}</div>
       </nav>

@@ -22,24 +22,11 @@ const routes = [
   },
   {
     path: '/products(?title=*)(?category=*)(?publisher=*)',
-    render: props => (
-      <div>
-        <h1>Products Page</h1>
-        <ul>
-          {Object.entries(props.location.params).map((set, i) => (
-            <li key={set[0] + set[1] + i}>
-              <h2>
-                query: {set[0]}, value: {set[1]}
-              </h2>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ),
+    render: () => React.lazy(() => import('./pages/Products')),
   },
   {
     path: '/products/:id',
-    render: () => <h1>Product Details Page</h1>,
+    render: () => React.lazy(() => import('./pages/ProductDetails'))
   },
   {
     path: '/account',
@@ -63,7 +50,7 @@ const routes = [
   },
   {
     path: '/cart/purchase',
-    render: () => <h1>Invoice Details for Current Cart</h1>,
+    render: () => React.lazy(() => import('./pages/Invoice')),
   },
   {
     path: '/wish-list',
