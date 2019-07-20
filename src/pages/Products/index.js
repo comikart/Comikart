@@ -10,8 +10,8 @@ class Products extends Component {
       <div className={css.container}>
         {this.props.products.map(product => {
           return (
-            <React.Fragment>
-              <ProductCard product={product} />
+            <React.Fragment key={product.id}>
+                <ProductCard product={product} />
             </React.Fragment>
           );
         })}
