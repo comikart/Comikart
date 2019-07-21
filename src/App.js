@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/products/:id',
-    render: () => React.lazy(() => import('./pages/ProductDetails'))
+    render: () => React.lazy(() => import('./pages/ProductDetails')),
   },
   {
     path: '/account',

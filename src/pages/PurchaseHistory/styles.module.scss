@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  &__Header {
+    display: flex;
+  }
+
+  &__Header {
+    border-bottom: 1px solid black;
+    padding: 1rem;
+    h2 {
+      width: 40%;
+      text-align: center;
+    }
+    *:not(:first-child) {
+      width: 15%;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.purchaseHistory {
+  display: flex;
+  padding: 2rem 1rem;
+  justify-content: space-around;
+  h2 {
+    width: 40%;
+    text-align: center;
+  }
+  *:not(:first-child) {
+    width: 15%;
+    text-align: center;
+  }
+  p,
+  a {
+    font-size: 1.4rem;
+  }
+
+  &:not(last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &:nth-child(2n + 0) {
+    background-color: #efefef;
+  }
+}
