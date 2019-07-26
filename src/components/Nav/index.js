@@ -18,7 +18,6 @@ class Nav extends Component {
       search: '',
     };
   }
-
   handleHamburger = () => {
     this.setState({ activeHamburger: !this.state.activeHamburger });
   };

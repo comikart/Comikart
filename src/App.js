@@ -26,15 +26,15 @@ const routes = [
   },
   {
     path: '/products/:id',
-    render: () => React.lazy(() => import('./pages/ProductDetails'))
+    render: () => React.lazy(() => import('./pages/ProductDetails')),
   },
   {
     path: '/account',
-    render: () => <h1>Account Details Page.</h1>,
+    render: () => React.lazy(() => import('./pages/Account')),
   },
   {
     path: '/account/purchase-history',
-    render: () => <h1>Purchase History Records</h1>,
+    render: () => React.lazy(() => import('./pages/PurchaseHistory')),
   },
   {
     path: '/account/purchase-history/:id',
@@ -42,7 +42,7 @@ const routes = [
   },
   {
     path: '/account/payment-methods',
-    render: () => <h1>Payment Methods</h1>,
+    render: () => React.lazy(() => import('./pages/PaymentMethods')),
   },
   {
     path: '/cart',

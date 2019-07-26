@@ -1,0 +1,17 @@
+.CreditCard {
+  padding: 2rem 1rem 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  border-bottom: 1px solid lightgray;
+  &__Exp {
+    margin: 0 auto;
+  }
+  &__ButtonGroup {
+    margin-left: auto;
+    display: flex;
+    *:not(:last-child) {
+      margin-right: 3rem;
+    }
+  }
+}

@@ -108,6 +108,40 @@ const init = {
     id: '1',
     email: 'john@email.com',
     role_id: 2,
+    purchaseHistory: [
+      {
+        id: 1,
+        date_created: '2019-06-04T01:58:30.529Z',
+        address_one: '123 wambam st.',
+        address_two: null,
+        full_name: 'lorem ipsum',
+        city: 'Las Vegas',
+        state: 'NV',
+        zip: '89027',
+        country: 'US',
+        phone: '+1 555 555 5555',
+        email: 'lorem@email.com',
+        status_id: 1,
+        user_id: 1,
+        invoice_id: 1,
+      },
+      {
+        id: 4,
+        date_created: '2019-06-08T16:21:52.008Z',
+        address_one: null,
+        address_two: null,
+        full_name: null,
+        city: null,
+        state: null,
+        zip: null,
+        country: null,
+        phone: null,
+        email: null,
+        status_id: 1,
+        user_id: 1,
+        invoice_id: 4,
+      },
+    ],
     cart: [
       {
         user_id: 1,
@@ -151,25 +185,36 @@ const init = {
     ],
     paymentOptions: [
       {
-        credit_card: 1213212132,
-        billing_address: '123 Jay St',
-        exp: '1/2/2007',
-        security_number: 123,
+        id: 1,
+        credit_card: '424242424242',
+        address_one: '123 whambam st',
+        address_two: null,
+        full_name: 'lorem ipsum',
+        country: 'US',
+        postal_code: '55555',
+        exp_month: '05',
+        exp_year: '2020',
+        security_number: 444,
         active: false,
+        user_id: 1,
+        type_id: 1,
+        title: 'debit',
       },
       {
-        credit_card: 12322322132,
-        billing_address: '123 Jay St',
-        exp: '1/2/2027',
-        security_number: 123,
-        active: true,
-      },
-      {
-        credit_card: 6666662132,
-        billing_address: '123 Jay St',
-        exp: '1/2/2022',
-        security_number: 123,
-        active: true,
+        id: 1,
+        credit_card: '424242424242',
+        address_one: '123 whambam st',
+        address_two: null,
+        full_name: 'lorem ipsum',
+        country: 'US',
+        postal_code: '55555',
+        exp_month: '05',
+        exp_year: '2020',
+        security_number: 444,
+        active: false,
+        user_id: 1,
+        type_id: 1,
+        title: 'debit',
       },
     ],
   },
@@ -177,6 +222,7 @@ const init = {
   addingUser: false,
   updatingUser: false,
   deletingUser: false,
+  fetchingPurchaseHistory: false,
   error: null,
 };
 
@@ -188,6 +234,16 @@ const userReducer = (state = init, action) => {
       return Object.assign({}, state, {
         user: action.payload,
         fetchingUser: false,
+      });
+
+    case userActions.FETCHINGPURCHASEHISTORY:
+      return Object.assign({}, state, { fetchingPurchaseHistory: true });
+    case userActions.FETCHEDPURCHASEHISTORY:
+      return Object.assign({}, state, {
+        user: {
+          ...state.user,
+          purchaseHistory: { ...state.user.purchaseHistory, ...action.payload },
+        },
       });
     case userActions.ERROR:
       return Object.assign({}, state, { error: action.payload });
