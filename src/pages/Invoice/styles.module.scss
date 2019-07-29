@@ -1,0 +1,86 @@
+.Container {
+  width: 100%;
+  height: 100vh;
+}
+.Header {
+  color: black;
+}
+.Invoice__Header {
+  margin: 10px 0;
+}
+.Section {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+}
+.Billing {
+  height: 180px;
+  overflow-y: scroll;
+  border: 1px solid black;
+}
+.Billing,
+.Shipping {
+  width: 100%;
+}
+.TableRow {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  padding: 1rem;
+
+  &:nth-child(even) {
+    background-color: lightgrey;
+  }
+
+  &:first-child {
+    position: sticky;
+    top: 0;
+    background: white;
+  }
+}
+.Shipping {
+  min-height: 220px;
+  border-top: 5px lightgrey dashed;
+  border-bottom: 5px lightgrey dashed;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+td,
+th {
+  font-size: 2rem;
+  width: 33%;
+  text-align: center;
+}
+.Invoice {
+  min-height: 100px;
+}
+.Form {
+  display: flex;
+  flex-flow: column;
+  width: 30%;
+  margin-bottom: 10px;
+}
+.Form__Input {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.Invoice__Button {
+  padding: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+
+  &:hover {
+    background: lightgrey;
+    color: white;
+  }
+}
+
+.Invoice__Button__marginTop {
+  margin-top: 10px;
+}
