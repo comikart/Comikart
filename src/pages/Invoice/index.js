@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import css from './styles.module.scss';
+
 class Invoice extends Component {
   state = {
     street: '',
@@ -37,76 +39,63 @@ class Invoice extends Component {
     const subtotal = cart.reduce((acc, curr) => {
       return acc + curr.product.unit_price;
     }, 0);
+
     return (
-      <div>
-        <h1>Invoice Page</h1>
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <div
-            style={{
-              minHeight: '400px',
-              border: '1px solid black',
-              width: '50%',
-            }}
-          >
-            <h1>Cart Stuff</h1>
-            {cart.map(item => (
-              <div>
-                <h2>{item.product.title}</h2>
-                <h2>${item.product.unit_price}</h2>
-              </div>
-            ))}
-          </div>
-          <div
-            style={{
-              minHeight: '400px',
-              border: '1px solid black',
-              width: '50%',
-            }}
-          >
-            <h1> Choose billing option</h1>
-            {paymentOptions.map(
-              option =>
-                option.active && (
-                  <div
-                    style={{
-                      border: 'black solid 1px',
-                    }}
-                  >
-                    <h2>{option.credit_card}</h2>
-                    <h2>{option.billing_address}</h2>
-                    <h2>{option.exp}</h2>
-                  </div>
-                ),
-            )}
-            <h1>Shipping Address</h1>
-            <form>
+      <div className={css.Container}>
+        <h1 className={css.Header}>Invoice Page</h1>
+        <div className={css.Page}>
+          <div className={css.Section}>
+            <h1 className={css.Invoice__Header}> Choose Billing Option</h1>
+            <div className={css.Billing}>
+              <tr className={css.TableRow}>
+                <th>Credit Card</th>
+                <th>Address</th>
+                <th>Expire</th>
+              </tr>
+              {paymentOptions.map(option => (
+                <tr className={css.TableRow}>
+                  <td>{option.credit_card}</td>
+                  <td>{option.address_one}</td>
+                  <td>{option.exp_month + '/' + option.exp_year}</td>
+                </tr>
+              ))}
+            </div>
+            <div className={css.Shipping}>
+            <h1 className={css.Invoice__Header}>Shipping Address</h1>
+            <form className={css.Form}>
               <input
                 placeholder="Street"
                 name="street"
                 value={street}
                 onChange={this.handleInput}
+                className={css.Form__Input}
               />
               <input
                 placeholder="City"
                 name="city"
                 value={city}
                 onChange={this.handleInput}
+                className={css.Form__Input}
               />
               <input
                 placeholder="Zip"
                 name="zip_code"
                 value={zip_code}
                 onChange={this.handleInput}
+                className={css.Form__Input}
               />
             </form>
-            <button onClick={this.onClick}>Same as Billing Address</button>
-            <h1>La Cuenta</h1>
-            <h3>Sub-Total: ${subtotal}</h3>
-            <h3>Sales Tax : {tax * 100}%</h3>
-            <h3>Total: ${(subtotal + subtotal * tax).toFixed(2)}</h3>
+            <button className={css.Invoice__Button} onClick={this.onClick}>Same as Billing Address</button>
+            </div>
+            <div className={css.Invoice}>
+              <h1 className={css.Invoice__Header}>Total</h1>
+              <h2>Sub-Total: ${subtotal}</h2>
+              <h2>Sales Tax : {tax * 100}%</h2>
+              <h1>Total: ${(subtotal + subtotal * tax).toFixed(2)}</h1>
+            </div>
           </div>
         </div>
-        <button onClick={() => this.purchase}>Place Order</button>
+        <button className={`${css.Invoice__Button} ${css.Invoice__Button__marginTop}`} onClick={() => this.purchase}>Place Order</button>
       </div>
     );
   }
