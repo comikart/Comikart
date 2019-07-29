@@ -32,6 +32,8 @@ class Invoice extends Component {
     */
   };
 
+  // Implementation to select billing address
+
   render() {
     const { cart } = this.props.user;
     const { paymentOptions } = this.props.user;
@@ -48,12 +50,16 @@ class Invoice extends Component {
             <h1 className={css.Invoice__Header}> Choose Billing Option</h1>
             <div className={css.Billing}>
               <tr className={css.TableRow}>
+                <th>Actions</th>
                 <th>Credit Card</th>
                 <th>Address</th>
                 <th>Expire</th>
               </tr>
               {paymentOptions.map(option => (
                 <tr className={css.TableRow}>
+                  <td>
+                    <input type="radio" name="chosen"/>
+                  </td>
                   <td>{option.credit_card}</td>
                   <td>{option.address_one}</td>
                   <td>{option.exp_month + '/' + option.exp_year}</td>
@@ -61,31 +67,33 @@ class Invoice extends Component {
               ))}
             </div>
             <div className={css.Shipping}>
-            <h1 className={css.Invoice__Header}>Shipping Address</h1>
-            <form className={css.Form}>
-              <input
-                placeholder="Street"
-                name="street"
-                value={street}
-                onChange={this.handleInput}
-                className={css.Form__Input}
-              />
-              <input
-                placeholder="City"
-                name="city"
-                value={city}
-                onChange={this.handleInput}
-                className={css.Form__Input}
-              />
-              <input
-                placeholder="Zip"
-                name="zip_code"
-                value={zip_code}
-                onChange={this.handleInput}
-                className={css.Form__Input}
-              />
-            </form>
-            <button className={css.Invoice__Button} onClick={this.onClick}>Same as Billing Address</button>
+              <h1 className={css.Invoice__Header}>Shipping Address</h1>
+              <form className={css.Form}>
+                <input
+                  placeholder="Street"
+                  name="street"
+                  value={street}
+                  onChange={this.handleInput}
+                  className={css.Form__Input}
+                />
+                <input
+                  placeholder="City"
+                  name="city"
+                  value={city}
+                  onChange={this.handleInput}
+                  className={css.Form__Input}
+                />
+                <input
+                  placeholder="Zip"
+                  name="zip_code"
+                  value={zip_code}
+                  onChange={this.handleInput}
+                  className={css.Form__Input}
+                />
+              </form>
+              <button className={css.Invoice__Button} onClick={this.onClick}>
+                Same as Billing Address
+              </button>
             </div>
             <div className={css.Invoice}>
               <h1 className={css.Invoice__Header}>Total</h1>
@@ -95,7 +103,12 @@ class Invoice extends Component {
             </div>
           </div>
         </div>
-        <button className={`${css.Invoice__Button} ${css.Invoice__Button__marginTop}`} onClick={() => this.purchase}>Place Order</button>
+        <button
+          className={`${css.Invoice__Button} ${css.Invoice__Button__marginTop}`}
+          onClick={() => this.purchase}
+        >
+          Place Order
+        </button>
       </div>
     );
   }
