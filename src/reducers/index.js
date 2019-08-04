@@ -1,104 +1,8 @@
 import * as userActions from '../actions/userActions';
+import * as productActions from '../actions/productActions';
 
 const init = {
-  products: [
-    {
-      id: 1,
-      title: 'Batman: The killing joke, Deluxe Edition',
-      unit_price: 19.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 2,
-      title: 'Batman',
-      unit_price: 4.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 3,
-      title: 'Superman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 4,
-      title: 'Aquaman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 5,
-      title: 'Batman: The killing joke, Deluxe Edition',
-      unit_price: 19.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 6,
-      title: 'Batman',
-      unit_price: 4.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 7,
-      title: 'Superman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 8,
-      title: 'Aquaman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 9,
-      title: 'Batman: The killing joke, Deluxe Edition',
-      unit_price: 19.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 10,
-      title: 'Batman',
-      unit_price: 4.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '6',
-    },
-    {
-      id: 11,
-      title: 'Superman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '11',
-    },
-    {
-      id: 12,
-      title: 'Aquaman',
-      unit_price: 9.99,
-      publisher: 'DC Comics',
-      author: 'Scott Snyder',
-      issue: '12',
-    },
-  ],
+  products: null,
   categories: [],
   publishers: ['DC Comics', 'Marvel'],
   authors: [],
@@ -247,6 +151,9 @@ const userReducer = (state = init, action) => {
       });
     case userActions.ERROR:
       return Object.assign({}, state, { error: action.payload });
+
+    case productActions.COMPLETEPRODUCTACTION:
+      return Object.assign({}, state, { products: action.payload });
     default:
       return state;
   }
