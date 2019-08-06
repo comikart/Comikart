@@ -6,6 +6,9 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
   width: 100%;
   background: #eeeeee77;
   &__Inner {
@@ -36,7 +39,7 @@
       text-align: center;
       z-index: 1;
       position: absolute;
-      top: 98px;
+      top: 95px;
       transition: all 0.3s ease 0s;
     }
     .activeError {
