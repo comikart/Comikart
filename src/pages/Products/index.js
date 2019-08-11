@@ -4,6 +4,7 @@ import { getProducts } from '../../actions/productActions';
 
 import css from './styles.module.scss';
 import ProductCard from '../../components/ProductCard';
+import { addToCart } from '../../actions/userActions';
 
 class Products extends Component {
   componentDidMount() {
@@ -11,6 +12,11 @@ class Products extends Component {
       this.props.getProducts();
     }
   }
+
+  addItemToCart = (quantity, product_id) => {
+    const { id } = this.props.user;
+    this.props.addToCart(id, quantity, product_id);
+  };
   render() {
     return (
       <div className={css.container}>
@@ -18,7 +24,7 @@ class Products extends Component {
           ? this.props.products.map(product => {
               return (
                 <React.Fragment key={product.id}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} action={this.addItemToCart} />
                 </React.Fragment>
               );
             })
@@ -30,5 +36,5 @@ class Products extends Component {
 
 export default connect(
   state => state,
-  { getProducts },
+  { getProducts, addToCart },
 )(Products);
