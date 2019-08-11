@@ -13,10 +13,6 @@ class CartItem extends Component {
       changesMade: false,
     };
   }
-  handleRemove = () => {
-    // TODO implement an action which removes the cart item
-    console.log('removing item from cart.');
-  };
   handleMoveToCart = () => {
     // TODO implement an action which moves the cart item to wish list
     console.log('moving to wish list');
@@ -90,7 +86,7 @@ class CartItem extends Component {
           </p>
           <p
             className={`${css.container__text} ${css.center} ${css.link}`}
-            onClick={this.handleRemove}
+            onClick={() => this.props.action(this.props.product_id)}
           >
             remove
           </p>

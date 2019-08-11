@@ -16,7 +16,8 @@ export const ADDINGITEMTOCART = 'ADDINGITEMTOCART';
 export const ADDEDITEMTOCART = 'ADDEDITEMTOCART';
 export const UPDATINGCART = 'UPDATINGCART';
 export const MOVEDITEMTOWISHLIST = 'MOVEDITEMTOWISHLIST';
-export const DELETECARTITEM = 'DELETECARTITEM';
+export const DELETINGCARTITEM = 'DELETINGCARTITEM';
+export const DELETEDCARTITEM = 'DELETEDCARTITEM';
 
 export const FETCHINGPURCHASEHISTORY = 'FETCHINGPURCHASEHISTORY';
 export const FETCHEDPURCHASEHISTORY = 'FETCHEDPURCHASEHISTORY';
@@ -84,6 +85,22 @@ export const addToCart = (user_id, quantity = 1, product_id) => {
     dispatch({ type: ADDINGITEMTOCART });
     promise
       .then(res => dispatch({ type: ADDEDITEMTOCART, payload: res.data }))
+      .catch(err => dispatch({ type: ERROR, payload: err }));
+  };
+};
+
+export const deleteFromCart = (user_id, product_id) => {
+  const token = localStorage.getItem('jwt');
+  const config = { headers: { Authorization: token } };
+  const promise = axios.delete(
+    `${API_URL}${USER_BASEPATH}/${user_id}/cart/${product_id}`,
+    config,
+  );
+
+  return dispatch => {
+    dispatch({ type: DELETINGCARTITEM });
+    promise
+      .then(res => dispatch({ type: DELETEDCARTITEM, payload: res.data }))
       .catch(err => dispatch({ type: ERROR, payload: err }));
   };
 };
