@@ -73,7 +73,12 @@ export const moveItemToWishList = (userId, productId, token) => {
 export const addToCart = (user_id, quantity = 1, product_id) => {
   const token = localStorage.getItem('jwt');
   const config = { headers: { Authorization: token } };
-  const promise = axios.post(`${API_URL}${USER_BASEPATH}/${user_id}/cart`);
+  const data = { product: { quantity, product_id } };
+  const promise = axios.post(
+    `${API_URL}${USER_BASEPATH}/${user_id}/cart`,
+    data,
+    config,
+  );
 
   return dispatch => {
     dispatch({ type: ADDINGITEMTOCART });
