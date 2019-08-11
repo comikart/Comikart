@@ -19,6 +19,7 @@ const userReducer = (state = init, action) => {
   switch (action.type) {
     case userActions.FETCHINGUSER:
       return Object.assign({}, state, { fetchingUser: true });
+
     case userActions.COMPLETE:
       return Object.assign({}, state, {
         user: action.payload,
@@ -27,6 +28,7 @@ const userReducer = (state = init, action) => {
 
     case userActions.FETCHINGPURCHASEHISTORY:
       return Object.assign({}, state, { fetchingPurchaseHistory: true });
+
     case userActions.FETCHEDPURCHASEHISTORY:
       return Object.assign({}, state, {
         user: {
@@ -34,6 +36,10 @@ const userReducer = (state = init, action) => {
           purchaseHistory: { ...state.user.purchaseHistory, ...action.payload },
         },
       });
+
+    case userActions.ADDEDITEMTOCART:
+      return { ...state, ...{ user: { ...state.user, cart: action.payload } } };
+
     case userActions.ERROR:
       return Object.assign({}, state, { error: action.payload });
 
