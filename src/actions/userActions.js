@@ -12,7 +12,8 @@ export const COMPLETE = 'COMPLETED ACTION';
 export const ERROR = 'ERROR';
 
 export const FETCHINGCART = 'FETCHINGCART';
-export const ADDITEMTOCART = 'ADDITEMTOCART';
+export const ADDINGITEMTOCART = 'ADDINGITEMTOCART';
+export const ADDEDITEMTOCART = 'ADDEDITEMTOCART';
 export const UPDATINGCART = 'UPDATINGCART';
 export const MOVEDITEMTOWISHLIST = 'MOVEDITEMTOWISHLIST';
 export const DELETECARTITEM = 'DELETECARTITEM';
@@ -65,6 +66,19 @@ export const moveItemToWishList = (userId, productId, token) => {
     dispatch({ type: UPDATINGCART });
     promise
       .then(res => dispatch({ type: MOVEDITEMTOWISHLIST, payload: res.data }))
+      .catch(err => dispatch({ type: ERROR, payload: err }));
+  };
+};
+
+export const addToCart = (user_id, quantity = 1, product_id) => {
+  const token = localStorage.getItem('jwt');
+  const config = { headers: { Authorization: token } };
+  const promise = axios.post(`${API_URL}${USER_BASEPATH}/${user_id}/cart`);
+
+  return dispatch => {
+    dispatch({ type: ADDINGITEMTOCART });
+    promise
+      .then(res => dispatch({ type: ADDEDITEMTOCART, payload: res.data }))
       .catch(err => dispatch({ type: ERROR, payload: err }));
   };
 };
