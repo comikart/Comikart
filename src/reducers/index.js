@@ -33,7 +33,7 @@ const userReducer = (state = init, action) => {
       return Object.assign({}, state, {
         user: {
           ...state.user,
-          purchaseHistory: { ...state.user.purchaseHistory, ...action.payload },
+          purchaseHistory: [...state.user.purchaseHistory, ...action.payload],
         },
       });
 

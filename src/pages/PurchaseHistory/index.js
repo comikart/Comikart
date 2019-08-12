@@ -9,7 +9,7 @@ class PurchaseHistory extends Component {
   state = {};
   componentDidMount() {
     if (!this.props.user.purchaseHistory) {
-      this.props.getPurchaseHistory();
+      this.props.getPurchaseHistory(this.props.user.id);
     }
   }
   render() {
