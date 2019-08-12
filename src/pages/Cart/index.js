@@ -6,7 +6,7 @@ import css from './styles.module.scss';
 import CartItem from '../../components/CartItem';
 import btnStyles from '../../components/Button/styles.module.scss';
 
-import { deleteFromCart } from '../../actions/userActions';
+import { deleteFromCart, updateCartItem } from '../../actions/userActions';
 
 class Cart extends Component {
   constructor(props) {
@@ -16,6 +16,10 @@ class Cart extends Component {
   handleRemoveProduct = product_id => {
     const { id } = this.props.user;
     this.props.deleteFromCart(id, product_id);
+  };
+  handleUpdateProduct = (product_id, quantity) => {
+    const { id } = this.props.user;
+    this.props.updateCartItem(id, product_id, quantity);
   };
   render() {
     const length = this.props.user.cart.length;
@@ -37,7 +41,8 @@ class Cart extends Component {
             <CartItem
               {...item}
               key={item.product.title + i}
-              action={this.handleRemoveProduct}
+              removeAction={this.handleRemoveProduct}
+              updateAction={this.handleUpdateProduct}
             />
           ))}
           <div className={css.orderDetails}>
@@ -67,5 +72,5 @@ const stateToProps = state => ({ ...state });
 
 export default connect(
   stateToProps,
-  { deleteFromCart },
+  { deleteFromCart, updateCartItem },
 )(Cart);

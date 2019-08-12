@@ -43,6 +43,9 @@ const userReducer = (state = init, action) => {
     case userActions.DELETEDCARTITEM:
       return { ...state, ...{ user: { ...state.user, cart: action.payload } } };
 
+    case userActions.UPDATEDCARTITEM:
+      return { ...state, ...{ user: { ...state.user, cart: action.payload } } };
+
     case userActions.ERROR:
       return Object.assign({}, state, { error: action.payload });
 

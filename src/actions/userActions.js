@@ -14,7 +14,8 @@ export const ERROR = 'ERROR';
 export const FETCHINGCART = 'FETCHINGCART';
 export const ADDINGITEMTOCART = 'ADDINGITEMTOCART';
 export const ADDEDITEMTOCART = 'ADDEDITEMTOCART';
-export const UPDATINGCART = 'UPDATINGCART';
+export const UPDATINGCARTITEM = 'UPDATINGCARTITEM';
+export const UPDATEDCARTITEM = 'UPDATEDCARTITEM';
 export const MOVEDITEMTOWISHLIST = 'MOVEDITEMTOWISHLIST';
 export const DELETINGCARTITEM = 'DELETINGCARTITEM';
 export const DELETEDCARTITEM = 'DELETEDCARTITEM';
@@ -64,7 +65,7 @@ export const moveItemToWishList = (userId, productId, token) => {
     config,
   );
   return dispatch => {
-    dispatch({ type: UPDATINGCART });
+    dispatch({ type: UPDATINGCARTITEM });
     promise
       .then(res => dispatch({ type: MOVEDITEMTOWISHLIST, payload: res.data }))
       .catch(err => dispatch({ type: ERROR, payload: err }));
@@ -101,6 +102,20 @@ export const deleteFromCart = (user_id, product_id) => {
     dispatch({ type: DELETINGCARTITEM });
     promise
       .then(res => dispatch({ type: DELETEDCARTITEM, payload: res.data }))
+      .catch(err => dispatch({ type: ERROR, payload: err }));
+  };
+};
+
+export const updateCartItem = (user_id, product_id, quantity) => {
+  const token = localStorage.getItem('jwt');
+  const config = { headers: { Authorization: token } };
+  const data = { quantity };
+  const PREFIX = `${API_URL}${USER_BASEPATH}/${user_id}/cart/${product_id}`;
+  const promise = axios.put(PREFIX, data, config);
+
+  return dispatch => {
+    promise
+      .then(res => dispatch({ type: UPDATEDCARTITEM, payload: res.data }))
       .catch(err => dispatch({ type: ERROR, payload: err }));
   };
 };

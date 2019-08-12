@@ -30,6 +30,9 @@ class CartItem extends Component {
   };
   handleSubmitChanges = () => {
     // TODO add an action which should update the changes to the cart item on the server side
+    const { quantity } = this.state;
+    const { id } = this.props.product;
+    this.props.updateAction(id, quantity);
     this.setState({ changesMade: false });
   };
   render() {
@@ -76,7 +79,7 @@ class CartItem extends Component {
         </div>
         <div className={css.container__section}>
           <h1 className={`${css.container__text} ${css.center}`}>
-            ${this.props.product.unit_price}
+            ${this.props.product.unit_price * this.props.quantity}
           </h1>
           <p
             className={`${css.container__text} ${css.center} ${css.link}`}
@@ -86,7 +89,7 @@ class CartItem extends Component {
           </p>
           <p
             className={`${css.container__text} ${css.center} ${css.link}`}
-            onClick={() => this.props.action(this.props.product_id)}
+            onClick={() => this.props.removeAction(this.props.product_id)}
           >
             remove
           </p>
