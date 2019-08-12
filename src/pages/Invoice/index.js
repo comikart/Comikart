@@ -35,7 +35,7 @@ class Invoice extends Component {
     const { paymentOptions } = this.props.user;
     const { street, city, zip_code, tax } = this.state;
     const subtotal = cart.reduce((acc, curr) => {
-      return acc + curr.product.unit_price;
+      return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
     return (
       <div>
@@ -81,20 +81,20 @@ class Invoice extends Component {
             <h1>Shipping Address</h1>
             <form>
               <input
-                placeholder="Street"
-                name="street"
+                placeholder='Street'
+                name='street'
                 value={street}
                 onChange={this.handleInput}
               />
               <input
-                placeholder="City"
-                name="city"
+                placeholder='City'
+                name='city'
                 value={city}
                 onChange={this.handleInput}
               />
               <input
-                placeholder="Zip"
-                name="zip_code"
+                placeholder='Zip'
+                name='zip_code'
                 value={zip_code}
                 onChange={this.handleInput}
               />

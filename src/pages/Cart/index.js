@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'buttermilk';
+
 import css from './styles.module.scss';
 import CartItem from '../../components/CartItem';
 import btnStyles from '../../components/Button/styles.module.scss';
-import { Link } from 'buttermilk';
+
+import { deleteFromCart, updateCartItem } from '../../actions/userActions';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  handleRemoveProduct = product_id => {
+    const { id } = this.props.user;
+    this.props.deleteFromCart(id, product_id);
+  };
+  handleUpdateProduct = (product_id, quantity) => {
+    const { id } = this.props.user;
+    this.props.updateCartItem(id, product_id, quantity);
+  };
   render() {
     const length = this.props.user.cart.length;
     const subTotal = this.props.user.cart.reduce(
@@ -27,7 +38,12 @@ class Cart extends Component {
         </header>
         <section className={css.cart__container}>
           {this.props.user.cart.map((item, i) => (
-            <CartItem {...item} key={item.product.title + i} />
+            <CartItem
+              {...item}
+              key={item.product.title + i}
+              removeAction={this.handleRemoveProduct}
+              updateAction={this.handleUpdateProduct}
+            />
           ))}
           <div className={css.orderDetails}>
             <header className={css.orderDetails__header}>
@@ -56,5 +72,5 @@ const stateToProps = state => ({ ...state });
 
 export default connect(
   stateToProps,
-  {},
+  { deleteFromCart, updateCartItem },
 )(Cart);

@@ -12,9 +12,9 @@ const ProductCard = props => {
       <Link className={css.container__link} href={`products/${id}`}>
         <img
           src={defaultProductImg}
-          alt="Default Comic"
+          alt='Default Comic'
           className={css.container__img}
-          />
+        />
       </Link>
       <div className={css.container__content}>
         <h1 className={css.container__content_title}>{title}</h1>
@@ -28,7 +28,9 @@ const ProductCard = props => {
         </h2>
       </div>
       <div className={css.container__button__group}>
-        <Button style="primary">Cart</Button>
+        <Button onClick={() => props.action(1, id)} style='primary'>
+          Cart
+        </Button>
         <Button>Wish List</Button>
       </div>
     </div>
