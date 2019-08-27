@@ -23,6 +23,8 @@ export const DELETEDCARTITEM = 'DELETEDCARTITEM';
 export const FETCHINGPURCHASEHISTORY = 'FETCHINGPURCHASEHISTORY';
 export const FETCHEDPURCHASEHISTORY = 'FETCHEDPURCHASEHISTORY';
 
+export const CREATEDCREDITCARD = 'CREATEDCREDITCARD';
+
 export const login = userDetails => {
   const promise = axios.post(`${API_URL}${USER_BASEPATH}/login`, userDetails);
   return dispatch => {
@@ -134,6 +136,23 @@ export const getPurchaseHistory = userId => {
       .then(res =>
         dispatch({ type: FETCHEDPURCHASEHISTORY, payload: res.data }),
       )
+      .catch(err => dispatch({ type: ERROR, payload: err }));
+  };
+};
+
+export const createCreditCard = (user_id, creditCard) => {
+  const token = localStorage.getItem('jwt');
+  const config = { headers: { Authorization: token } };
+  const data = { paymentOption: creditCard };
+  const promise = axios.post(
+    `${API_URL}${USER_BASEPATH}/${user_id}/paymentoption/`,
+    data,
+    config,
+  );
+
+  return dispatch => {
+    promise
+      .then(res => dispatch({ type: CREATEDCREDITCARD, payload: res.data }))
       .catch(err => dispatch({ type: ERROR, payload: err }));
   };
 };

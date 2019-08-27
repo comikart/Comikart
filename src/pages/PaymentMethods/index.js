@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import AccountHOC from '../../components/AccountHOC';
 import { connect } from 'react-redux';
-import css from './styles.module.scss';
 
+import AccountHOC from '../../components/AccountHOC';
+
+import css from './styles.module.scss';
 import CreditCard from '../../components/CreditCard';
 import Button from '../../components/Button';
 
+import { createCreditCard } from '../../actions/userActions';
+
 class PaymentMethods extends Component {
   state = {
-    createCard: false,
     creditCardForm: false,
+    creditCard: {},
   };
   handleCreditCardForm = () => {
     const { creditCardForm } = this.state;
     this.setState(prevState => ({ creditCardForm: !creditCardForm }));
+  };
+  handleInput = e => {
+    this.setState(prevState => ({
+      creditCard: { [e.target.name]: e.target.value },
+    }));
   };
   render() {
     let creditForm = null;
@@ -103,5 +111,5 @@ class PaymentMethods extends Component {
 
 export default connect(
   state => state,
-  {},
+  { createCreditCard },
 )(PaymentMethods);
