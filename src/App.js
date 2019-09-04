@@ -11,14 +11,7 @@ import css from './app.module.scss';
 const routes = [
   {
     path: '/',
-    render: props => (
-      <React.Fragment>
-        <h1>
-          Landing page. <br />
-          Implement Me! <br />
-        </h1>
-      </React.Fragment>
-    ),
+    render: () => React.lazy(() => import('./pages/Products')),
   },
   {
     path: '/products(?title=*)(?category=*)(?publisher=*)',

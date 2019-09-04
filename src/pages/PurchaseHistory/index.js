@@ -8,12 +8,15 @@ import { Link } from 'buttermilk';
 class PurchaseHistory extends Component {
   state = {};
   componentDidMount() {
-    // this.props.getPurchaseHistory();
+    if (!this.props.user.purchaseHistory) {
+      this.props.getPurchaseHistory(this.props.user.id);
+    }
   }
   render() {
     return (
       <AccountHOC>
-        {this.props.user && this.props.user.purchaseHistory.length > 0 ? (
+        {this.props.user.purchaseHistory &&
+        this.props.user.purchaseHistory.length > 0 ? (
           <div className={CSS.container}>
             <div className={css.container__Header}>
               <h2 className={css.container__HeaderText}>Purchase History</h2>

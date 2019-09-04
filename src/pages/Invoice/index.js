@@ -39,7 +39,7 @@ class Invoice extends Component {
     const { paymentOptions } = this.props.user;
     const { street, city, zip_code, tax } = this.state;
     const subtotal = cart.reduce((acc, curr) => {
-      return acc + curr.product.unit_price;
+      return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
 
     return (
