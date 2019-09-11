@@ -55,10 +55,13 @@ th {
   min-height: 100px;
 }
 .Form {
+  margin-bottom: 10px;
+}
+.Field {
   display: flex;
   flex-flow: column;
-  width: 30%;
-  margin-bottom: 10px;
+  width: 50%;
+  border: none;
 }
 .Form__Input {
   border: none;
@@ -68,6 +71,15 @@ th {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  width: 70%;
+}
+.Form__Address {
+  display: flex;
+  justify-content: space-between;
+  width: 22%;
+}
+.Form__Button {
+  zoom: 2;
 }
 .Invoice__Button {
   padding: 1rem;

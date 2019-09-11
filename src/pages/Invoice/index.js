@@ -5,9 +5,14 @@ import css from './styles.module.scss';
 
 class Invoice extends Component {
   state = {
-    street: '',
-    city: '',
-    zip_code: '',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zip_code: '',
+    },
+    payment_id: 1,
     same_address: false,
     tax: 0.08,
   };
@@ -16,20 +21,32 @@ class Invoice extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  changePayment = id => {
+    this.setState(() => ({ payment_id: id }));
+  };
+
   onClick = () => {
-    this.setState((state, props) => ({ same_address: !state.same_address }));
+    this.setState(prevState => ({ same_address: !prevState.same_address }));
   };
 
   purchase = () => {
     /* API call to save invoice + compile the following for the POST
         - the shipping address 
             * String concatenate (street + city + zip_code) OR
-            * this.props.user.selectedBillingOption's address)
+            * this.props.user.selectedBillingOption's address) or done on backend
+        - the payment option
         - subtotal
         - total
         - tax
         - date created
     */
+    const { address, same_address, payment_id } = this.state;
+    const { user } = this.props;
+    const invoice = {
+      address: same_address ? same_address : address,
+      full_name: user.first_name + user.last_name,
+      payment_id,
+    };
   };
 
   // Implementation to select billing address
@@ -37,7 +54,16 @@ class Invoice extends Component {
   render() {
     const { cart } = this.props.user;
     const { paymentOptions } = this.props.user;
-    const { street, city, zip_code, tax } = this.state;
+    const {
+      street,
+      city,
+      state,
+      country,
+      zip_code,
+      tax,
+      payment_id,
+      same_address,
+    } = this.state;
     const subtotal = cart.reduce((acc, curr) => {
       return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
@@ -58,7 +84,12 @@ class Invoice extends Component {
               {paymentOptions.map(option => (
                 <tr className={css.TableRow}>
                   <td>
-                    <input type="radio" name="chosen"/>
+                    <input
+                      type="radio"
+                      name="payment_id"
+                      checked={payment_id === option.id}
+                      onChange={() => this.changePayment(option.id)}
+                    />
                   </td>
                   <td>{option.credit_card}</td>
                   <td>{option.address_one}</td>
@@ -69,31 +100,54 @@ class Invoice extends Component {
             <div className={css.Shipping}>
               <h1 className={css.Invoice__Header}>Shipping Address</h1>
               <form className={css.Form}>
-                <input
-                  placeholder="Street"
-                  name="street"
-                  value={street}
-                  onChange={this.handleInput}
-                  className={css.Form__Input}
-                />
-                <input
-                  placeholder="City"
-                  name="city"
-                  value={city}
-                  onChange={this.handleInput}
-                  className={css.Form__Input}
-                />
-                <input
-                  placeholder="Zip"
-                  name="zip_code"
-                  value={zip_code}
-                  onChange={this.handleInput}
-                  className={css.Form__Input}
-                />
+                <fieldset disabled={same_address} className={css.Field}>
+                  <input
+                    placeholder="Street"
+                    name="street"
+                    value={street}
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="City"
+                    name="city"
+                    value={city}
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="State"
+                    name="state"
+                    value={state}
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="Country"
+                    name="country"
+                    value={country}
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="Zip"
+                    name="zip_code"
+                    value={zip_code}
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                </fieldset>
               </form>
-              <button className={css.Invoice__Button} onClick={this.onClick}>
-                Same as Billing Address
-              </button>
+              <div className={css.Form__Address}>
+                <h1>Same as Billing Address</h1>
+                <input
+                  type="checkbox"
+                  name="same_address"
+                  className={css.Form__Button}
+                  checked={same_address}
+                  onChange={this.onClick}
+                />
+              </div>
             </div>
             <div className={css.Invoice}>
               <h1 className={css.Invoice__Header}>Total</h1>
