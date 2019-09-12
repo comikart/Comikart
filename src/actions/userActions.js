@@ -23,6 +23,8 @@ export const DELETEDCARTITEM = 'DELETEDCARTITEM';
 export const FETCHINGPURCHASEHISTORY = 'FETCHINGPURCHASEHISTORY';
 export const FETCHEDPURCHASEHISTORY = 'FETCHEDPURCHASEHISTORY';
 
+export const MAKINGPURCHASE = 'MAKINGPURCHASE';
+
 export const login = userDetails => {
   const promise = axios.post(`${API_URL}${USER_BASEPATH}/login`, userDetails);
   return dispatch => {
@@ -135,5 +137,26 @@ export const getPurchaseHistory = userId => {
         dispatch({ type: FETCHEDPURCHASEHISTORY, payload: res.data }),
       )
       .catch(err => dispatch({ type: ERROR, payload: err }));
+  };
+};
+
+export const makePurchase = (userId, purchase) => {
+  const token = localStorage.getItem('jwt');
+  const config = { headers: { Authorization: token } };
+  const promise = axios.post(
+    `${API_URL}${USER_BASEPATH}/${userId}/purchase`,
+    purchase,
+    config,
+  );
+
+  return dispatch => {
+    dispatch({
+      type: MAKINGPURCHASE,
+    });
+    promise.then(res =>
+      dispatch({ type: MAKINGPURCHASE, payload: res.data }).catch(err =>
+        dispatch({ type: ERROR, payload: err }),
+      ),
+    );
   };
 };

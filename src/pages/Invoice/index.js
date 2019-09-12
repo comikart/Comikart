@@ -1,112 +1,146 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import css from './styles.module.scss';
+import { makePurchase } from '../../actions/userActions';
+
 class Invoice extends Component {
   state = {
-    street: '',
-    city: '',
-    zip_code: '',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zip_code: '',
+    },
+    payment_id: 1,
     same_address: false,
     tax: 0.08,
   };
 
-  handleInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleInput = (e, field) => {
+    this.setState({
+      address: { [e.target.name]: e.target.value },
+    });
+  };
+
+  changePayment = id => {
+    this.setState(() => ({ payment_id: id }));
   };
 
   onClick = () => {
-    this.setState((state, props) => ({ same_address: !state.same_address }));
+    this.setState(prevState => ({ same_address: !prevState.same_address }));
   };
 
   purchase = () => {
-    /* API call to save invoice + compile the following for the POST
-        - the shipping address 
-            * String concatenate (street + city + zip_code) OR
-            * this.props.user.selectedBillingOption's address)
-        - subtotal
-        - total
-        - tax
-        - date created
-    */
+    const { address, same_address, payment_id } = this.state;
+    const { user } = this.props;
+    const purchase = {
+      address: same_address ? same_address : address,
+      full_name: user.first_name + user.last_name,
+      payment_id,
+    };
+    this.props.makePurchase(user.id, purchase);
   };
 
   render() {
     const { cart } = this.props.user;
     const { paymentOptions } = this.props.user;
-    const { street, city, zip_code, tax } = this.state;
+    const { tax, payment_id, same_address } = this.state;
     const subtotal = cart.reduce((acc, curr) => {
       return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
+
     return (
-      <div>
-        <h1>Invoice Page</h1>
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <div
-            style={{
-              minHeight: '400px',
-              border: '1px solid black',
-              width: '50%',
-            }}
-          >
-            <h1>Cart Stuff</h1>
-            {cart.map(item => (
-              <div>
-                <h2>{item.product.title}</h2>
-                <h2>${item.product.unit_price}</h2>
+      <div className={css.Container}>
+        <h1 className={css.Header}>Invoice Page</h1>
+        <div className={css.Page}>
+          <div className={css.Section}>
+            <h1 className={css.Invoice__Header}> Choose Billing Option</h1>
+            <div className={css.Billing}>
+              <tr className={css.TableRow}>
+                <th>Actions</th>
+                <th>Credit Card</th>
+                <th>Address</th>
+                <th>Expire</th>
+              </tr>
+              {paymentOptions.map(option => (
+                <tr className={css.TableRow}>
+                  <td>
+                    <input
+                      type="radio"
+                      name="payment_id"
+                      checked={payment_id === option.id}
+                      onChange={() => this.changePayment(option.id)}
+                    />
+                  </td>
+                  <td>{option.credit_card}</td>
+                  <td>{option.address_one}</td>
+                  <td>{option.exp_month + '/' + option.exp_year}</td>
+                </tr>
+              ))}
+            </div>
+            <div className={css.Shipping}>
+              <h1 className={css.Invoice__Header}>Shipping Address</h1>
+              <form className={css.Form}>
+                <fieldset disabled={same_address} className={css.Field}>
+                  <input
+                    placeholder="Street"
+                    name="street"
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="City"
+                    name="city"
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="State"
+                    name="state"
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="Country"
+                    name="country"
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                  <input
+                    placeholder="Zip"
+                    name="zip_code"
+                    onChange={this.handleInput}
+                    className={css.Form__Input}
+                  />
+                </fieldset>
+              </form>
+              <div className={css.Form__Address}>
+                <h1>Same as Billing Address</h1>
+                <input
+                  type="checkbox"
+                  name="same_address"
+                  className={css.Form__Button}
+                  checked={same_address}
+                  onChange={this.onClick}
+                />
               </div>
-            ))}
-          </div>
-          <div
-            style={{
-              minHeight: '400px',
-              border: '1px solid black',
-              width: '50%',
-            }}
-          >
-            <h1> Choose billing option</h1>
-            {paymentOptions.map(
-              option =>
-                option.active && (
-                  <div
-                    style={{
-                      border: 'black solid 1px',
-                    }}
-                  >
-                    <h2>{option.credit_card}</h2>
-                    <h2>{option.billing_address}</h2>
-                    <h2>{option.exp}</h2>
-                  </div>
-                ),
-            )}
-            <h1>Shipping Address</h1>
-            <form>
-              <input
-                placeholder='Street'
-                name='street'
-                value={street}
-                onChange={this.handleInput}
-              />
-              <input
-                placeholder='City'
-                name='city'
-                value={city}
-                onChange={this.handleInput}
-              />
-              <input
-                placeholder='Zip'
-                name='zip_code'
-                value={zip_code}
-                onChange={this.handleInput}
-              />
-            </form>
-            <button onClick={this.onClick}>Same as Billing Address</button>
-            <h1>La Cuenta</h1>
-            <h3>Sub-Total: ${subtotal}</h3>
-            <h3>Sales Tax : {tax * 100}%</h3>
-            <h3>Total: ${(subtotal + subtotal * tax).toFixed(2)}</h3>
+            </div>
+            <div className={css.Invoice}>
+              <h1 className={css.Invoice__Header}>Total</h1>
+              <h2>Sub-Total: ${subtotal}</h2>
+              <h2>Sales Tax : {tax * 100}%</h2>
+              <h1>Total: ${(subtotal + subtotal * tax).toFixed(2)}</h1>
+            </div>
           </div>
         </div>
-        <button onClick={() => this.purchase}>Place Order</button>
+        <button
+          className={`${css.Invoice__Button} ${css.Invoice__Button__marginTop}`}
+          onClick={this.purchase}
+        >
+          Place Order
+        </button>
       </div>
     );
   }
@@ -114,5 +148,5 @@ class Invoice extends Component {
 
 export default connect(
   state => state,
-  {},
+  {makePurchase},
 )(Invoice);
