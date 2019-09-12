@@ -32,32 +32,20 @@ class Invoice extends Component {
   };
 
   purchase = () => {
-    /* API call to save invoice + compile the following for the POST
-        - the shipping address 
-            * String concatenate (street + city + zip_code) OR
-            * this.props.user.selectedBillingOption's address) or done on backend
-        - the payment option
-        - subtotal
-        - total
-        - tax
-        - date created
-    */
     const { address, same_address, payment_id } = this.state;
     const { user } = this.props;
-    const invoice = {
+    const purchase = {
       address: same_address ? same_address : address,
       full_name: user.first_name + user.last_name,
       payment_id,
     };
+    this.props.makePurchase(user.id, purchase);
   };
-
-  // Implementation to select billing address
 
   render() {
     const { cart } = this.props.user;
     const { paymentOptions } = this.props.user;
-    const { address, tax, payment_id, same_address } = this.state;
-    const { street, city, state, country, zip_code } = address;
+    const { tax, payment_id, same_address } = this.state;
     const subtotal = cart.reduce((acc, curr) => {
       return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
@@ -104,28 +92,24 @@ class Invoice extends Component {
                   <input
                     placeholder="City"
                     name="city"
-                    value={city}
                     onChange={this.handleInput}
                     className={css.Form__Input}
                   />
                   <input
                     placeholder="State"
                     name="state"
-                    value={state}
                     onChange={this.handleInput}
                     className={css.Form__Input}
                   />
                   <input
                     placeholder="Country"
                     name="country"
-                    value={country}
                     onChange={this.handleInput}
                     className={css.Form__Input}
                   />
                   <input
                     placeholder="Zip"
                     name="zip_code"
-                    value={zip_code}
                     onChange={this.handleInput}
                     className={css.Form__Input}
                   />
@@ -152,7 +136,7 @@ class Invoice extends Component {
         </div>
         <button
           className={`${css.Invoice__Button} ${css.Invoice__Button__marginTop}`}
-          onClick={() => this.purchase}
+          onClick={this.purchase}
         >
           Place Order
         </button>
