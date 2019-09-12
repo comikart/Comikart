@@ -17,8 +17,10 @@ class Invoice extends Component {
     tax: 0.08,
   };
 
-  handleInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleInput = (e, field) => {
+    this.setState({
+      address: { [e.target.name]: e.target.value },
+    });
   };
 
   changePayment = id => {
@@ -54,16 +56,8 @@ class Invoice extends Component {
   render() {
     const { cart } = this.props.user;
     const { paymentOptions } = this.props.user;
-    const {
-      street,
-      city,
-      state,
-      country,
-      zip_code,
-      tax,
-      payment_id,
-      same_address,
-    } = this.state;
+    const { address, tax, payment_id, same_address } = this.state;
+    const { street, city, state, country, zip_code } = address;
     const subtotal = cart.reduce((acc, curr) => {
       return acc + parseInt(curr.product.unit_price) * parseInt(curr.quantity);
     }, 0);
@@ -104,7 +98,6 @@ class Invoice extends Component {
                   <input
                     placeholder="Street"
                     name="street"
-                    value={street}
                     onChange={this.handleInput}
                     className={css.Form__Input}
                   />
