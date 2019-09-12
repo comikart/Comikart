@@ -144,7 +144,7 @@ export const makePurchase = (userId, purchase) => {
   const token = localStorage.getItem('jwt');
   const config = { headers: { Authorization: token } };
   const promise = axios.post(
-    `${API_URL}${USER_BASEPATH}/user/${userId}`,
+    `${API_URL}${USER_BASEPATH}/${userId}/purchase`,
     purchase,
     config,
   );

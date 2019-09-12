@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import css from './styles.module.scss';
+import { makePurchase } from '../../actions/userActions';
 
 class Invoice extends Component {
   state = {
@@ -147,5 +148,5 @@ class Invoice extends Component {
 
 export default connect(
   state => state,
-  {},
+  {makePurchase},
 )(Invoice);
